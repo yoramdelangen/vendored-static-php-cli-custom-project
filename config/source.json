@@ -1,0 +1,19 @@
+{
+  "snowflake": {
+    "type": "git",
+    "rev": "master",
+    "url": "https://github.com/snowflakedb/pdo_snowflake",
+    "license": {
+      "type": "file",
+      "path": "LICENSE.txt"
+    }
+  },
+  "snowflake_direct": {
+    "type": "url",
+    "url": "https://github.com/snowflakedb/pdo_snowflake/archive/refs/heads/master.zip",
+    "license": {
+      "type": "file",
+      "path": "LICENSE.txt"
+    }
+  }
+}

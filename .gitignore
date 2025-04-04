@@ -1,0 +1,6 @@
+buildroot/
+vendor/
+downloads/
+source/
+
+.DS_Store

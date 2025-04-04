@@ -1,0 +1,10 @@
+{
+  "snowflake": {
+    "support": {
+      "BSD": "wip"
+    },
+    "type": "builtin",
+    "arg-type": "custom",
+    "lib-depends": ["snowflake"]
+  }
+}

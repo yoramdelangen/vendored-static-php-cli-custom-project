@@ -1,0 +1,14 @@
+{
+    "snowflake": {
+        "source": "snowflake",
+        "static-libs-unix": [
+            "snowflake.so"
+        ],
+        "static-libs-windows": [
+            "snowflake.dll"
+        ],
+        "ext-depends": [
+            "pdo"
+        ]
+    }
+}
