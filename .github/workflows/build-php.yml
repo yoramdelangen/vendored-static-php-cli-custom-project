@@ -31,7 +31,7 @@ on:
 
 jobs:
   unix-static-build:
-    uses: crazywhalecc/static-php-cli/.github/workflows/build-unix.yml@main
+    uses: yoramdelangen/static-php-cli/.github/workflows/build-unix.yml@feat/workflow-call
     with:
       os: ${{ inputs.selectos }}
       php-version: ${{ inputs.php-version }}
