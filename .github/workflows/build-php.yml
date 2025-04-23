@@ -24,7 +24,6 @@ on:
           - '8.4'
           - '8.3'
           - '8.2'
-          - '8.1'
       create-docker:
         description: 'Create a docker image'
         type: boolean
@@ -33,7 +32,7 @@ on:
 jobs:
   unix-static-build:
     if: inputs.selectos != 'windows'
-    uses: crazywhalecc/static-php-cli/.github/workflows/build-unix.yml@main
+    uses: crazywhalecc/static-php-cli/.github/workflows/build-unix.yml
     with:
       os: ${{ inputs.selectos }}
       php-version: ${{ inputs.php-version }}
