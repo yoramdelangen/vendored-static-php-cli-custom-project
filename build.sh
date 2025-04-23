@@ -8,4 +8,4 @@ bin/spc doctor --auto-fix
 
 bin/spc download --debug --with-php=$PHP_VERSION --for-extensions="$PHP_EXTENSIONS" --prefer-pre-built
 
-bin/spc build --with-clean --build-cli "$PHP_EXTENSIONS" --no-strip --debug
+bin/spc build --build-cli "$PHP_EXTENSIONS" -I "extension_dir=ext/" -I "extension=pdo_snowflake" -I "extension=php_rustypipewire" --no-strip --debug
