@@ -31,7 +31,7 @@ on:
 
 jobs:
   unix-static-build:
-    if: inputs.selectos != 'windows'
+    if: ${{ inputs.selectos != 'windows' }}
     uses: crazywhalecc/static-php-cli/.github/workflows/build-unix.yml@main
     with:
       os: ${{ inputs.selectos }}
@@ -40,7 +40,7 @@ jobs:
       vendor-mode: true
 
   windows-build:
-    if: inputs.selectos == 'windows'
+    if: ${{ inputs.selectos == 'windows' }}
     name: build ${{ inputs.version }} on Windows x86_64
     runs-on: windows-latest
     steps:
