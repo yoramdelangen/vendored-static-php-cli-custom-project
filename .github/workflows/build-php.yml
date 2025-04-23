@@ -32,7 +32,7 @@ on:
 jobs:
   unix-static-build:
     if: ${{ inputs.selectos != 'windows' }}
-    uses: yoramdelangen/static-php-cli/.github/workflows/build-unix.yml@main
+    uses: yoramdelangen/static-php-cli/.github/workflows/build-unix.yml@feat/workflow-call-with-vendor-mode
     with:
       os: ${{ inputs.selectos }}
       php-version: ${{ inputs.php-version }}
@@ -116,4 +116,3 @@ jobs:
           path: |
             buildroot/build-extensions.json
             buildroot/build-libraries.json
-
