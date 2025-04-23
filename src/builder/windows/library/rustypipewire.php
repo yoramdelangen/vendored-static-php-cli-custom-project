@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace App\builder\windows\library;
 
-use SPC\exception\FileSystemException;
-use SPC\exception\RuntimeException;
+use SPC\builder\linux\library\LinuxLibraryBase;
 use SPC\store\FileSystem;
 
-trait rustypipewire
+class rustypipewire extends LinuxLibraryBase
 {
+    public const NAME = 'rustypipewire';
+
     /**
      * @throws RuntimeException
      * @throws FileSystemException
