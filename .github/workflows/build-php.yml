@@ -77,12 +77,11 @@ jobs:
       # defaults:
       - name: Define default environments
         run: |
-          $extensions = "bcmath,bz2,curl,mbstring,msgpack,mysqli,mysqlnd,odbc,opcache,openssl,pdo,pdo_mysql,pdo_odbc,pdo_pgsql,pdo_sqlite,pdo_sqlsrv,pgsql,phar,redis,sockets,sodium,sqlite3,sqlsrv,zip,zlib,snowflake,rustypipewire"
 
           echo "SPC_BUILD_DEBUG=--debug" >> $env:GITHUB_ENV
           echo "SPC_PRE_BUILT=--prefer-pre-built" >> $env:GITHUB_ENV
           echo "SPC_BUILD_CLI=--build-cli" >> $env:GITHUB_ENV
-          echo "PHP_EXTENSIONS=$extensions" >> $env:GITHUB_ENV
+          echo "PHP_EXTENSIONS=bcmath,bz2,curl,mbstring,msgpack,mysqli,mysqlnd,odbc,opcache,openssl,pdo,pdo_mysql,pdo_odbc,pdo_pgsql,pdo_sqlite,pdo_sqlsrv,pgsql,phar,redis,sockets,sodium,sqlite3,sqlsrv,zip,zlib,snowflake,rustypipewire" >> $env:GITHUB_ENV
 
       - run: vendor/bin/spc doctor
 
