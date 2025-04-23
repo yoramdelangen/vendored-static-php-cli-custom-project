@@ -78,9 +78,10 @@ jobs:
           key: php-${{ env.INPUT_HASH }}
 
       # With or without debug
-      - if: inputs.debug == true
+      - # if: inputs.debug == true
         run: echo "SPC_BUILD_DEBUG=--debug" >> $env:GITHUB_ENV
-      - if: inputs.prefer-pre-built == true
+
+      - # if: inputs.prefer-pre-built == true
         run: echo "SPC_PRE_BUILT=--prefer-pre-built" >> $env:GITHUB_ENV
 
       # With target select: cli, micro or both
@@ -98,6 +99,8 @@ jobs:
 
       # Run build command
       - run: ./bin/spc build "${{ inputs.extensions }}" ${{ env.SPC_BUILD_DEBUG }} ${{ env.SPC_BUILD_CLI }} ${{ env.SPC_BUILD_MICRO }} ${{ env.SPC_BUILD_FPM }} --no-strip
+
+      - run: ls -l buildroot/bin
 
       # Upload cli executable
       - # if: ${{ inputs.build-cli == true }}
