@@ -30,7 +30,7 @@ on:
       #   default: true
 
 env:
-  PHP_EXTENSIONS: odbc,pdo_odbc,bcmath,calendar,ctype,curl,dba,exif,fileinfo,filter,gd,intl,libxml,mbregex,mbstring,msgpack,mysqli,mysqlnd,opcache,openssl,pcntl,pdo,pdo_mysql,pdo_pgsql,pdo_sqlite,pdo_sqlsrv,pgsql,phar,posix,readline,redis,session,simplexml,sockets,sodium,sqlite4,sqlsrv,tokenizer,xml,xmlreader,xmlwriter,zip,zlib,snowflake,rustypipewire
+  PHP_EXTENSIONS: 'odbc,pdo_odbc,bcmath,calendar,ctype,curl,dba,exif,fileinfo,filter,gd,intl,libxml,mbregex,mbstring,msgpack,mysqli,mysqlnd,opcache,openssl,pcntl,pdo,pdo_mysql,pdo_pgsql,pdo_sqlite,pdo_sqlsrv,pgsql,phar,posix,readline,redis,session,simplexml,sockets,sodium,sqlite4,sqlsrv,tokenizer,xml,xmlreader,xmlwriter,zip,zlib,snowflake,rustypipewire'
 
 jobs:
   unix-static-build:
