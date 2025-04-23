@@ -32,7 +32,7 @@ on:
 jobs:
   unix-static-build:
     if: inputs.selectos != 'windows'
-    uses: crazywhalecc/static-php-cli/.github/workflows/build-unix.yml
+    uses: crazywhalecc/static-php-cli/.github/workflows/build-unix.yml@main
     with:
       os: ${{ inputs.selectos }}
       php-version: ${{ inputs.php-version }}
