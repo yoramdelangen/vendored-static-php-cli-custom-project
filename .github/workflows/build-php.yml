@@ -24,9 +24,10 @@ on:
           - '8.4'
           - '8.3'
           - '8.2'
-
-env:
-  PHP_EXTENSIONS: 'odbc,pdo_odbc,bcmath,calendar,ctype,curl,dba,exif,fileinfo,filter,gd,intl,libxml,mbregex,mbstring,msgpack,mysqli,mysqlnd,opcache,openssl,pcntl,pdo,pdo_mysql,pdo_pgsql,pdo_sqlite,pdo_sqlsrv,pgsql,phar,posix,readline,redis,session,simplexml,sockets,sodium,sqlite4,sqlsrv,tokenizer,xml,xmlreader,xmlwriter,zip,zlib,snowflake,rustypipewire'
+      extensions:
+        description: Extensions to build (comma separated)
+        type: string
+        default: 'odbc,pdo_odbc,bcmath,calendar,ctype,curl,dba,exif,fileinfo,filter,gd,intl,libxml,mbregex,mbstring,msgpack,mysqli,mysqlnd,opcache,openssl,pcntl,pdo,pdo_mysql,pdo_pgsql,pdo_sqlite,pdo_sqlsrv,pgsql,phar,posix,readline,redis,session,simplexml,sockets,sodium,sqlite4,sqlsrv,tokenizer,xml,xmlreader,xmlwriter,zip,zlib,snowflake,rustypipewire'
 
 jobs:
   unix-static-build:
@@ -35,7 +36,7 @@ jobs:
     with:
       os: ${{ inputs.selectos }}
       php-version: ${{ inputs.php-version }}
-      extensions: ${{ env.PHP_EXTENSIONS }}
+      extensions: ${{ inputs.extensions }}
       vendor-mode: true
 
   windows-build:
@@ -66,7 +67,7 @@ jobs:
       - name: Generate hashed key for download cache
         shell: bash
         run: |
-          INPUT_HASH=$(echo "${{ runner.os }}-${{ inputs.version }}-${{ env.PHP_EXTENSIONS }}" | sha256sum | awk '{print $1}')
+          INPUT_HASH=$(echo "${{ runner.os }}-${{ inputs.version }}-${{ inputs.extensions }}" | sha256sum | awk '{print $1}')
           echo "INPUT_HASH=${INPUT_HASH}" >> "$GITHUB_ENV"
 
       # Cache downloaded source
@@ -92,10 +93,10 @@ jobs:
 
       # If there's no dependencies cache, fetch sources, with or without debug
       - if: steps.cache-download.outputs.cache-hit != 'true'
-        run: ./bin/spc download --with-php="${{ inputs.version }}" --for-extensions="${{ env.PHP_EXTENSIONS }}" ${{ env.SPC_BUILD_DEBUG }} ${{ env.SPC_PRE_BUILT }}
+        run: ./bin/spc download --with-php="${{ inputs.version }}" --for-extensions="${{ inputs.extensions }}" ${{ env.SPC_BUILD_DEBUG }} ${{ env.SPC_PRE_BUILT }}
 
       # Run build command
-      - run: ./bin/spc build "${{ env.PHP_EXTENSIONS }}" ${{ env.SPC_BUILD_DEBUG }} ${{ env.SPC_BUILD_CLI }} ${{ env.SPC_BUILD_MICRO }} ${{ env.SPC_BUILD_FPM }}
+      - run: ./bin/spc build "${{ inputs.extensions }}" ${{ env.SPC_BUILD_DEBUG }} ${{ env.SPC_BUILD_CLI }} ${{ env.SPC_BUILD_MICRO }} ${{ env.SPC_BUILD_FPM }}
 
       # Upload cli executable
       - if: ${{ inputs.build-cli == true }}
