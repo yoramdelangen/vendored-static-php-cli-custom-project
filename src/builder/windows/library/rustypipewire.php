@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\builder\windows\library;
 
-use SPC\builder\linux\library\LinuxLibraryBase;
+use SPC\builder\windows\library\WindowsLibraryBase;
 use SPC\store\FileSystem;
 
-class rustypipewire extends LinuxLibraryBase
+class rustypipewire extends WindowsLibraryBase
 {
     public const NAME = 'rustypipewire';
 
