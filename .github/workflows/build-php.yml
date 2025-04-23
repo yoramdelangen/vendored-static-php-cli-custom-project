@@ -56,6 +56,13 @@ jobs:
       # If there's no Composer cache, install dependencies
       - if: steps.cache-composer-deps.outputs.cache-hit != 'true'
         run: composer update --no-dev --classmap-authoritative
+        env:
+          COMPOSER_AUTH: |
+            {
+              "github-oauth": {
+                "github.com": "${{ secrets.GITHUB_TOKEN }}"
+              }
+            }
 
       - name: Generate hashed key for download cache
         shell: bash
