@@ -1,18 +1,27 @@
 {
-    "name": "yoramdelangen/poc-vendored-php-static-cli",
-    "authors": [
-        {
-            "name": "Yoram",
-            "email": "yoramdelangen@gmail.com"
-        }
-    ],
-    "autoload": {
-        "psr-4": {
-            "App\\": "src/"
-        }
-    },
-    "require": {
-        "crazywhalecc/static-php-cli": "^2.5",
-        "symfony/var-dumper": "^7.2"
+  "name": "yoramdelangen/poc-vendored-php-static-cli",
+  "authors": [
+    {
+      "name": "Yoram",
+      "email": "yoramdelangen@gmail.com"
     }
+  ],
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  },
+  "repositories": [
+    {
+      "type": "git",
+      "url": "git@github.com:yoramdelangen/static-php-cli.git"
+    }
+  ],
+  "require": {
+    "crazywhalecc/static-php-cli": "dev-feat/vendor-mode-compile-custom-workdir",
+    "symfony/var-dumper": "^7.2"
+  },
+  "config": {
+    "preferred-install": "source"
+  }
 }

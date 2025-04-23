@@ -22,12 +22,14 @@ trait snowflake
         FileSystem::resetDir($this->source_dir . '/modules');
         FileSystem::resetDir($this->source_dir . '/.libs');
 
+        FileSystem::createDir($builddir . '/bin/ext');
+
         $envs = 'PHP_HOME=' . $phpSource;
 
         // configure
         shell()->cd($this->source_dir)
             ->exec($envs . ' ./scripts/build_pdo_snowflake.sh');
 
-        copy($this->source_dir . '/modules/pdo_snowflake.so', $builddir . '/bin/pdo_snowflake.so');
+        copy($this->source_dir . '/modules/pdo_snowflake.so', $builddir . '/bin/ext/pdo_snowflake.so');
     }
 }

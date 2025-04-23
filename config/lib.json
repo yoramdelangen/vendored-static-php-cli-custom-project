@@ -10,5 +10,17 @@
         "ext-depends": [
             "pdo"
         ]
+    },
+    "rustypipewire": {
+        "source": "rustypipewire",
+        "static-libs-unix": [
+            "libphp_rustypipewire.so"
+        ],
+        "static-libs-macos": [
+            "librustypipewire.dylib"
+        ],
+        "static-libs-linux": [
+            "librustypipewire.so"
+        ]
     }
 }

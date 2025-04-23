@@ -6,5 +6,12 @@
     "type": "builtin",
     "arg-type": "custom",
     "lib-depends": ["snowflake"]
+  },
+  "rustypipewire": {
+    "support": {
+      "BSD": "wip"
+    },
+    "type": "builtin",
+    "lib-depends": ["rustypipewire"]
   }
 }

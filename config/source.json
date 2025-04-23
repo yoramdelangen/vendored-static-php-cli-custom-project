@@ -15,5 +15,12 @@
       "type": "file",
       "path": "LICENSE.txt"
     }
+  },
+  "rustypipewire": {
+    "type": "custom",
+    "license": {
+      "type": "text",
+      "text": "License is Infotopics | Appsfortableau"
+    }
   }
 }

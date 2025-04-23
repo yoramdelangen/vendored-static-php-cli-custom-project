@@ -4,21 +4,15 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "522b95b0ebce1c8d358f9554dbd9a0d5",
+    "content-hash": "ea104896e5fd74e6eb1bef15940672cd",
     "packages": [
         {
             "name": "crazywhalecc/static-php-cli",
-            "version": "2.5.1",
+            "version": "dev-feat/vendor-mode-compile-custom-workdir",
             "source": {
                 "type": "git",
-                "url": "https://github.com/crazywhalecc/static-php-cli.git",
-                "reference": "3ba215c35c6ae27689fd1cdb47c93049a13ddd81"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/crazywhalecc/static-php-cli/zipball/3ba215c35c6ae27689fd1cdb47c93049a13ddd81",
-                "reference": "3ba215c35c6ae27689fd1cdb47c93049a13ddd81",
-                "shasum": ""
+                "url": "git@github.com:yoramdelangen/static-php-cli.git",
+                "reference": "aa3668a1cf2a21424cb0bdaf210cacee109f72b5"
             },
             "require": {
                 "ext-mbstring": "*",
@@ -42,15 +36,33 @@
             ],
             "type": "library",
             "autoload": {
+                "psr-4": {
+                    "SPC\\": "src/SPC"
+                },
                 "files": [
                     "src/globals/defines.php",
                     "src/globals/functions.php"
-                ],
+                ]
+            },
+            "autoload-dev": {
                 "psr-4": {
-                    "SPC\\": "src/SPC"
+                    "SPC\\Tests\\": "tests/SPC"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "scripts": {
+                "analyse": [
+                    "phpstan analyse --memory-limit 300M"
+                ],
+                "cs-fix": [
+                    "php-cs-fixer fix"
+                ],
+                "test": [
+                    "vendor/bin/phpunit tests/ --no-coverage"
+                ],
+                "build:phar": [
+                    "vendor/bin/box compile"
+                ]
+            },
             "license": [
                 "MIT"
             ],
@@ -61,17 +73,13 @@
                 }
             ],
             "description": "Build single static PHP binary, with PHP project together, with popular extensions included.",
-            "support": {
-                "issues": "https://github.com/crazywhalecc/static-php-cli/issues",
-                "source": "https://github.com/crazywhalecc/static-php-cli/tree/2.5.1"
-            },
             "funding": [
                 {
-                    "url": "https://github.com/crazywhalecc/crazywhalecc/blob/master/FUNDING.md",
-                    "type": "other"
+                    "type": "other",
+                    "url": "https://github.com/crazywhalecc/crazywhalecc/blob/master/FUNDING.md"
                 }
             ],
-            "time": "2025-03-23T15:26:36+00:00"
+            "time": "2025-04-22T10:35:17+00:00"
         },
         {
             "name": "illuminate/collections",
@@ -1285,7 +1293,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": {
+        "crazywhalecc/static-php-cli": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {},
