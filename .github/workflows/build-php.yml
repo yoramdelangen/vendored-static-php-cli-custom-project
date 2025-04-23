@@ -87,10 +87,10 @@ jobs:
 
       # If there's no dependencies cache, fetch sources, with or without debug
       - if: steps.cache-download.outputs.cache-hit != 'true'
-        run: vendor/bin/spc download --with-php="${{ inputs.php-version }}" --for-extensions="${{ inputs.extensions }}" ${{ env.SPC_BUILD_DEBUG }} ${{ env.SPC_PRE_BUILT }}
+        run: vendor/bin/spc download --with-php="${{ inputs.php-version }}" --for-extensions="${{ env.PHP_EXTENSIONS }}" ${{ env.SPC_BUILD_DEBUG }} ${{ env.SPC_PRE_BUILT }}
 
       # Run build command
-      - run: vendor/bin/spc build "${{ inputs.extensions }}" ${{ env.SPC_BUILD_DEBUG }} ${{ env.SPC_BUILD_CLI }} ${{ env.SPC_BUILD_MICRO }} ${{ env.SPC_BUILD_FPM }} --no-strip
+      - run: vendor/bin/spc build "${{ env.PHP_EXTENSIONS }}" ${{ env.SPC_BUILD_DEBUG }} ${{ env.SPC_BUILD_CLI }} ${{ env.SPC_BUILD_MICRO }} ${{ env.SPC_BUILD_FPM }} --no-strip
 
       - run: ls
 
