@@ -84,7 +84,9 @@ jobs:
         run: echo "SPC_PRE_BUILT=--prefer-pre-built" >> $env:GITHUB_ENV
 
       # With target select: cli, micro or both
-      - run: echo "SPC_BUILD_CLI=--build-cli" >> $env:GITHUB_ENV
+      - # if: ${{ inputs.build-cli == true }
+        run: echo "SPC_BUILD_CLI=--build-cli" >> $env:GITHUB_ENV
+
       - if: ${{ inputs.build-micro == true }}
         run: echo "SPC_BUILD_MICRO=--build-micro" >> $env:GITHUB_ENV
 
@@ -92,7 +94,7 @@ jobs:
 
       # If there's no dependencies cache, fetch sources, with or without debug
       - if: steps.cache-download.outputs.cache-hit != 'true'
-        run: ./bin/spc download --with-php="${{ inputs.version }}" --for-extensions="${{ inputs.extensions }}" ${{ env.SPC_BUILD_DEBUG }} ${{ env.SPC_PRE_BUILT }}
+        run: ./bin/spc download --with-php="${{ inputs.php-version }}" --for-extensions="${{ inputs.extensions }}" ${{ env.SPC_BUILD_DEBUG }} ${{ env.SPC_PRE_BUILT }}
 
       # Run build command
       - run: ./bin/spc build "${{ inputs.extensions }}" ${{ env.SPC_BUILD_DEBUG }} ${{ env.SPC_BUILD_CLI }} ${{ env.SPC_BUILD_MICRO }} ${{ env.SPC_BUILD_FPM }}
