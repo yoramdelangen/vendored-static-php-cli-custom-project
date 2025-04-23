@@ -24,10 +24,6 @@ on:
           - '8.4'
           - '8.3'
           - '8.2'
-      extensions:
-        description: Extensions to build (comma separated)
-        type: string
-        default: 'odbc,pdo_odbc,bcmath,calendar,ctype,curl,dba,exif,fileinfo,filter,gd,intl,libxml,mbregex,mbstring,msgpack,mysqli,mysqlnd,opcache,openssl,pcntl,pdo,pdo_mysql,pdo_pgsql,pdo_sqlite,pdo_sqlsrv,pgsql,phar,posix,readline,redis,session,simplexml,sockets,sodium,sqlite4,sqlsrv,tokenizer,xml,xmlreader,xmlwriter,zip,zlib,snowflake,rustypipewire'
 
 jobs:
   unix-static-build:
@@ -36,12 +32,12 @@ jobs:
     with:
       os: ${{ inputs.selectos }}
       php-version: ${{ inputs.php-version }}
-      extensions: ${{ inputs.extensions }}
+      extensions: 'odbc,pdo_odbc,bcmath,calendar,ctype,curl,dba,exif,fileinfo,filter,gd,intl,libxml,mbregex,mbstring,msgpack,mysqli,mysqlnd,opcache,openssl,pcntl,pdo,pdo_mysql,pdo_pgsql,pdo_sqlite,pdo_sqlsrv,pgsql,phar,posix,readline,redis,session,simplexml,sockets,sodium,sqlite3,sqlsrv,tokenizer,xml,xmlreader,xmlwriter,zip,zlib,snowflake,rustypipewire'
       vendor-mode: true
 
   windows-build:
     if: ${{ inputs.selectos == 'windows' }}
-    name: build ${{ inputs.version }} on Windows x86_64
+    name: build ${{ inputs.php-version }} on Windows x86_64
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
@@ -78,18 +74,15 @@ jobs:
           key: php-${{ env.INPUT_HASH }}
 
       # With or without debug
-      - # if: inputs.debug == true
-        run: echo "SPC_BUILD_DEBUG=--debug" >> $env:GITHUB_ENV
+      # defaults:
+      - name: Define default environments
+        run: |
+          $extensions = "bcmath,bz2,curl,mbstring,msgpack,mysqli,mysqlnd,odbc,opcache,openssl,pdo,pdo_mysql,pdo_odbc,pdo_pgsql,pdo_sqlite,pdo_sqlsrv,pgsql,phar,redis,sockets,sodium,sqlite3,sqlsrv,zip,zlib,snowflake,rustypipewire"
 
-      - # if: inputs.prefer-pre-built == true
-        run: echo "SPC_PRE_BUILT=--prefer-pre-built" >> $env:GITHUB_ENV
-
-      # With target select: cli, micro or both
-      - # if: ${{ inputs.build-cli == true }
-        run: echo "SPC_BUILD_CLI=--build-cli" >> $env:GITHUB_ENV
-
-      - if: ${{ inputs.build-micro == true }}
-        run: echo "SPC_BUILD_MICRO=--build-micro" >> $env:GITHUB_ENV
+          echo "SPC_BUILD_DEBUG=--debug" >> $env:GITHUB_ENV
+          echo "SPC_PRE_BUILT=--prefer-pre-built" >> $env:GITHUB_ENV
+          echo "SPC_BUILD_CLI=--build-cli" >> $env:GITHUB_ENV
+          echo "PHP_EXTENSIONS=$extensions" >> $env:GITHUB_ENV
 
       - run: vendor/bin/spc doctor
 
