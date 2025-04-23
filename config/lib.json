@@ -21,11 +21,11 @@
         ],
         "static-libs-linux": [
             "librustypipewire.so"
-        ]
+        ],
         "static-libs-windows": [
             "librustypipewire.dll",
             "php_rustypipewire.dll",
             "php_rustypipewire.dll.lib"
-        ],
+        ]
     }
 }
