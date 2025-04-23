@@ -100,7 +100,7 @@ jobs:
       # Run build command
       - run: ./bin/spc build "${{ inputs.extensions }}" ${{ env.SPC_BUILD_DEBUG }} ${{ env.SPC_BUILD_CLI }} ${{ env.SPC_BUILD_MICRO }} ${{ env.SPC_BUILD_FPM }} --no-strip
 
-      - run: ls -l **/*
+      - run: ls -l
 
       # Upload cli executable
       - # if: ${{ inputs.build-cli == true }}
