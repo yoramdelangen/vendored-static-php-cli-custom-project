@@ -24,15 +24,15 @@ on:
           - '8.4'
           - '8.3'
           - '8.2'
-      create-docker:
-        description: 'Create a docker image'
-        type: boolean
-        default: true
+      # create-docker:
+      #   description: 'Create a docker image'
+      #   type: boolean
+      #   default: true
 
 jobs:
   unix-static-build:
     if: ${{ inputs.selectos != 'windows' }}
-    uses: crazywhalecc/static-php-cli/.github/workflows/build-unix.yml@main
+    uses: yoramdelangen/static-php-cli/.github/workflows/build-unix.yml@main
     with:
       os: ${{ inputs.selectos }}
       php-version: ${{ inputs.php-version }}
